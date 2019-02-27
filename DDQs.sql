@@ -54,7 +54,7 @@ CREATE TABLE books (
   date DATE NOT NULL,
 # Кількість на складі
 # reserve SMALLINT UNSIGNED NOT NULL,
-  FOREIGN KEY (publishing_house_id) REFERENCES publishing_houses (id) ON DELETE RESTRICT ON UPDATE CASCADE
+  FOREIGN KEY (publishing_house_id) REFERENCES publishing_houses (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) engine = InnoDB;
 
 
@@ -74,7 +74,7 @@ CREATE TABLE supplies (
 # Посилання на Клієнта цієї поставки
   customer_id INT NOT NULL,
   date DATE NOT NULL,
-  FOREIGN KEY (customer_id) REFERENCES customers (id) ON DELETE RESTRICT ON UPDATE CASCADE
+  FOREIGN KEY (customer_id) REFERENCES customers (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) engine = InnoDB;
 
 
@@ -84,8 +84,8 @@ CREATE TABLE supplies_books (
   book_id INT NOT NULL,
 # В одній поставці може бути декілька одинакових книг
   qty MEDIUMINT UNSIGNED NOT NULL,
-  FOREIGN KEY (supply_id) REFERENCES supplies (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-  FOREIGN KEY (book_id) REFERENCES books (id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  FOREIGN KEY (supply_id) REFERENCES supplies (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (book_id) REFERENCES books (id) ON DELETE CASCADE ON UPDATE CASCADE,
 # Ця пара полів сутності однозначно ідентифікує запис таблиці
   PRIMARY KEY (supply_id, book_id)
 ) engine = InnoDB;
